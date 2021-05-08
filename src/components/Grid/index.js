@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { observer } from 'mobx-react-lite';
 import Cell from '../Cell';
 import './Grid.css';
 
-const Grid = ({ grid }) => {
+const Grid = observer(({ grid }) => {
   if (grid.length === 0) return <div className="grid" data-testid="grid">The World is empty</div>;
   return (
     <div className="grid" data-testid="grid">
@@ -15,7 +16,7 @@ const Grid = ({ grid }) => {
       ))}
     </div>
   );
-};
+});
 
 Grid.propTypes = {
   grid: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.bool)),

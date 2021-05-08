@@ -1,5 +1,5 @@
-export const generateGrid = (height, width) => {
-  if (height < 0 || width < 0) return [];
+export const generateGrid = (height = 0, width = 0) => {
+  if (height <= 0 || width <= 0) return [];
   return Array.from(Array(height), () => new Array(width).fill(false));
 };
 
