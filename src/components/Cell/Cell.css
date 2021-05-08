@@ -1,0 +1,13 @@
+.cell {
+	display: inline-block;
+	background-color: gray;
+	width: 30px;
+	height: 30px;
+	margin: 5px;
+	cursor: pointer;
+	border: 1px solid gray;
+}
+
+.sea { background-color: lightblue; }
+.land { background-color: green; }
+.sea:hover, .land:hover { border: 1px solid white;}
