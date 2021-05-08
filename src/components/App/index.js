@@ -5,7 +5,7 @@ import './App.css';
 
 const App = () => (
   <div className="app" data-testid="app">
-    <Grid grid={app.grid} />
+    <Grid grid={app.grid} clickAction={app.flipCell} />
   </div>
 );
 
