@@ -48,7 +48,7 @@ describe('generateGrid', () => {
       expect(isGrid(testGrid)).toBeTruthy();
     });
     test(`has ${size} elements for a grid of size ${size}`, () => {
-      expect(testGrid.flat().length).toEqual(size);
+      expect([].concat(...testGrid).length).toEqual(size);
     });
     test(`has ${height} outside elements for a grid of height ${height}`, () => {
       expect(testGrid.length).toEqual(height);
