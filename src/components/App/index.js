@@ -1,21 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { observer } from 'mobx-react-lite';
+import Store from '../../models/app';
 import Grid from '../Grid';
 import './App.css';
 
-const App = ({ grid }) => (
+const store = new Store(10, 10);
+
+const App = () => (
   <div className="app" data-testid="app">
-    <Grid grid={grid} />
+    <Grid grid={store.grid} />
   </div>
 );
 
-App.propTypes = {
-  grid: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.bool)),
-};
-
-App.defaultProps = {
-  grid: [],
-};
-
-export default observer(App);
+export default App;
