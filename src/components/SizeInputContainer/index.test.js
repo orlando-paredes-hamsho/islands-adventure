@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import SizeInputContainer from './index';
 
 test('does not render without name', () => {
@@ -19,5 +19,14 @@ describe('with name', () => {
     render(<SizeInputContainer name={name} />);
     const sizeInput = screen.getByTestId('sizeInputContainer');
     expect(sizeInput).toHaveTextContent(name);
+  });
+});
+
+describe('with children', () => {
+  test('displays name as text', () => {
+    render(<SizeInputContainer name={'test'}><div>Children</div></SizeInputContainer>);
+    const sizeInput = screen.getByTestId('sizeInputContainer');
+    const children = within(sizeInput).getByText(/children/i)
+    expect(children).toBeInTheDocument();
   });
 });
