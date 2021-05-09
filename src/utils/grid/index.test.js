@@ -8,13 +8,22 @@ describe('isGrid', () => {
       1,
       'test',
       {},
+      undefined,
+      null,
+      NaN,
       [true],
       [1],
       ['test'],
       [{}],
+      [undefined],
+      [null],
+      [NaN],
       [[true]],
       [['test']],
       [[{}]],
+      [[undefined]],
+      [[null]],
+      [[NaN]],
     ].forEach((notAGrid) => {
       test(`with value ${JSON.stringify(notAGrid)}`, () => {
         expect(isGrid(notAGrid)).toBeFalsy();
