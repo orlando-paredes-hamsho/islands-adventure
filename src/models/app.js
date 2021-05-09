@@ -15,15 +15,27 @@ class App {
       this.grid = grid;
     }
 
+    changeWidth = (width) => {
+      if (typeof width !== 'number' || width < 0) return;
+      this.width = width;
+    }
+
+    changeHeight = (height) => {
+      if (typeof height !== 'number' || height < 0) return;
+      this.height = height;
+    }
+
     constructor(height, width) {
       makeObservable(this, {
         grid: observable,
         height: observable,
         width: observable,
         flipCell: action,
+        changeHeight: action,
+        changeWidth: action,
       });
       this.height = (typeof height === 'number') ? height : this.height;
-      this.width = (typeof height === 'number') ? width : this.width;
+      this.width = (typeof width === 'number') ? width : this.width;
       this.grid = generateGrid(height, width);
     }
 }
