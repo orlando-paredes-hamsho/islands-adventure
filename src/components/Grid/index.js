@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react-lite';
 import Cell from '../Cell';
-import './Grid.css';
+import './styles.css';
 
 const Grid = observer(({ grid, clickAction }) => {
   if (grid.length === 0) return <div className="grid" data-testid="grid">The World is empty</div>;
