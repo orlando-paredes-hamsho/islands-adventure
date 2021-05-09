@@ -1,4 +1,6 @@
-import { isGrid, generateGrid, isSafe } from './index';
+import {
+  isGrid, generateGrid, isSafe, isNewLand,
+} from './index';
 import randomNumber from '../index';
 
 describe('isGrid', () => {
@@ -81,5 +83,25 @@ describe('isSafe', () => {
   });
   test('returns true for values within the grid', () => {
     expect(isSafe(height - 1, width - 1, testGrid)).toBeFalsy();
+  });
+});
+
+describe('isNewLand', () => {
+  const height = randomNumber();
+  const width = randomNumber();
+  const testGrid = generateGrid(height, width);
+  test('returns false for negative values', () => {
+    expect(isNewLand(-1, -1, testGrid)).toBeFalsy();
+  });
+  test('returns false for values larger than the grid', () => {
+    expect(isNewLand(height, width, testGrid)).toBeFalsy();
+  });
+  test('returns false for values within the grid that are not 1', () => {
+    expect(isNewLand(height - 1, width - 1, testGrid)).toBeFalsy();
+  });
+  test('returns true for values within the grid that are 1', () => {
+    const newGrid = generateGrid(height, width);
+    newGrid[0][0] = 1;
+    expect(isNewLand(0, 0, newGrid)).toBeTruthy();
   });
 });

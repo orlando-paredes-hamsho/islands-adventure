@@ -10,3 +10,8 @@ export const isGrid = (grid) => {
   ));
 };
 export const isSafe = (x, y, grid) => (y > -1 && y < grid.length) && (x > -1 && x < grid[y].length);
+
+export const isNewLand = (x, y, grid) => {
+  if (!isSafe(x, y, grid)) return false;
+  return grid[y][x] === 1;
+};
