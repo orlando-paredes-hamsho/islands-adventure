@@ -1,0 +1,9 @@
+.sizeInput {
+    display: inline-block;
+    padding: 10px;
+    text-transform: capitalize;
+}
+.sizeInput > input {
+    display: block;
+    margin-top: 5px;
+}
