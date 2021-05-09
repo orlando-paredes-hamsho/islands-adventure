@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react-lite';
+import { toInt } from '../../utils';
 
 const SizeInput = observer(({ name, value, changeAction }) => {
   if (!name) return null;
@@ -11,7 +12,7 @@ const SizeInput = observer(({ name, value, changeAction }) => {
       name={name}
       value={value}
       data-testid="sizeInput"
-      onChange={({ target }) => { changeAction(parseInt(target.value, 10)); }}
+      onChange={({ target }) => { changeAction(toInt(target.value)); }}
     />
   );
 });

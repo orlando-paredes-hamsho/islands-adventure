@@ -75,6 +75,12 @@ describe('Changing Width', () => {
     app.changeWidth(newValue);
     expect(app.width).toEqual(newValue);
   });
+  test('grid changes when width changes', () => {
+    const app = new App(height, width);
+    const newValue = randomNumber();
+    app.changeWidth(newValue);
+    expect(app.grid).toEqual(generateGrid(height, newValue));
+  });
 });
 
 describe('Changing Height', () => {
@@ -98,5 +104,11 @@ describe('Changing Height', () => {
     const newValue = randomNumber();
     app.changeHeight(newValue);
     expect(app.height).toEqual(newValue);
+  });
+  test('grid changes when height changes', () => {
+    const app = new App(height, width);
+    const newValue = randomNumber();
+    app.changeHeight(newValue);
+    expect(app.grid).toEqual(generateGrid(newValue, width));
   });
 });

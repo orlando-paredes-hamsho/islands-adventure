@@ -18,11 +18,13 @@ class App {
     changeWidth = (width) => {
       if (typeof width !== 'number' || width < 0) return;
       this.width = width;
+      this.grid = generateGrid(this.height, width);
     }
 
     changeHeight = (height) => {
       if (typeof height !== 'number' || height < 0) return;
       this.height = height;
+      this.grid = generateGrid(height, this.width);
     }
 
     constructor(height, width) {
