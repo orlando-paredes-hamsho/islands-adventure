@@ -13,7 +13,10 @@ const App = observer(() => (
         Total number of dots on the grid:
         <b>{app.dots}</b>
       </p>
-      <p>Total number of islands on the grid: </p>
+      <p>
+        Total number of islands on the grid:
+        <b>{app.islands}</b>
+      </p>
     </div>
     <SizeInputContainer name="height">
       <SizeInput name="height" value={app.height} changeAction={app.changeHeight} />

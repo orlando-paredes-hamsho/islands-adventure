@@ -1,8 +1,10 @@
 import {
-  makeObservable, observable, action, computed,
+  makeObservable, observable, action, computed, toJS,
 } from 'mobx';
-import { generateGrid, isSafe } from '../utils/grid';
-
+import {
+  generateGrid, isSafe, explore, isNewLand,
+} from '../utils/grid';
+/* eslint-disable no-plusplus */
 class App {
     grid = [];
 
@@ -12,6 +14,20 @@ class App {
 
     get dots() {
       return [].concat(...this.grid).reduce((a, b) => a + b, 0);
+    }
+
+    get islands() {
+      const grid = toJS(this.grid);
+      let islands = 0;
+      for (let y = 0; y < grid.length; y++) {
+        for (let x = 0; x < grid[y].length; x++) {
+          if (isNewLand(x, y, grid)) {
+            explore(x, y, grid);
+            islands++;
+          }
+        }
+      }
+      return islands;
     }
 
     flipCell = (x, y) => {
@@ -39,6 +55,7 @@ class App {
         height: observable,
         width: observable,
         dots: computed,
+        islands: computed,
         flipCell: action,
         changeHeight: action,
         changeWidth: action,

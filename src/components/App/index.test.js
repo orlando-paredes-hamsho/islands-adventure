@@ -16,17 +16,25 @@ test('contains text for dots', () => {
   expect(text).toBeInTheDocument();
 });
 
+test('contains text for islands', () => {
+  render(<App />);
+  const component = screen.getByTestId('app');
+  const text = within(component).getByText(/islands/i);
+  expect(text).toBeInTheDocument();
+});
+
 test('contains the number of dots', () => {
   render(<App />);
   app.flipCell(app.height - 1, app.width - 1);
+  app.flipCell(app.height - 1, app.width - 2);
   const component = screen.getByTestId('app');
   const text = within(component).getByText(app.dots);
   expect(text).toBeInTheDocument();
 });
 
-test('contains text for islands', () => {
+test('contains the number of islands', () => {
   render(<App />);
   const component = screen.getByTestId('app');
-  const text = within(component).getByText(/islands/i);
+  const text = within(component).getByText(app.islands);
   expect(text).toBeInTheDocument();
 });

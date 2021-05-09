@@ -35,6 +35,9 @@ describe('App with param values', () => {
   test('has 0 dots', () => {
     expect(app.dots).toEqual(0);
   });
+  test('has 0 islands', () => {
+    expect(app.islands).toEqual(0);
+  });
 });
 
 describe('Flipping a Cell', () => {
@@ -44,7 +47,7 @@ describe('Flipping a Cell', () => {
     app.flipCell(height, width);
     expect(app.grid).toEqual(grid);
   });
-  test('Dots should not change if the x, y values are out of bounds', () => {
+  test('Grid should not change if the x, y values are out of bounds', () => {
     const app = new App(height, width);
     const grid = [...app.grid];
     app.flipCell(height, width);
@@ -56,6 +59,16 @@ describe('Flipping a Cell', () => {
     expect(app.dots).toEqual(0);
   });
   test('Dots should not change if the x, y values are out of bounds', () => {
+    const app = new App(height, width);
+    app.flipCell(height, width);
+    expect(app.dots).toEqual(0);
+  });
+  test('Islands should not change if the x, y values are invalid', () => {
+    const app = new App(height, width);
+    app.flipCell(-1, -1);
+    expect(app.dots).toEqual(0);
+  });
+  test('Islands should not change if the x, y values are out of bounds', () => {
     const app = new App(height, width);
     app.flipCell(height, width);
     expect(app.dots).toEqual(0);
@@ -72,6 +85,9 @@ describe('Flipping a Cell', () => {
     });
     test('Dots should change', () => {
       expect(app.dots).not.toEqual(0);
+    });
+    test('islands should change', () => {
+      expect(app.islands).not.toEqual(0);
     });
   });
 });
