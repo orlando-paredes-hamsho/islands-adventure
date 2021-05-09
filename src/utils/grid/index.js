@@ -15,3 +15,13 @@ export const isNewLand = (x, y, grid) => {
   if (!isSafe(x, y, grid)) return false;
   return grid[y][x] === 1;
 };
+
+export const explore = (x, y, grid) => {
+  if (isNewLand(x, y, grid)) {
+    grid[y][x] = 2; // eslint-disable-line no-param-reassign
+    explore(x + 1, y, grid);
+    explore(x, y + 1, grid);
+    explore(x - 1, y, grid);
+    explore(x, y - 1, grid);
+  }
+};

@@ -1,5 +1,5 @@
 import {
-  isGrid, generateGrid, isSafe, isNewLand,
+  isGrid, generateGrid, isSafe, isNewLand, explore,
 } from './index';
 import randomNumber from '../index';
 
@@ -103,5 +103,50 @@ describe('isNewLand', () => {
     const newGrid = generateGrid(height, width);
     newGrid[0][0] = 1;
     expect(isNewLand(0, 0, newGrid)).toBeTruthy();
+  });
+});
+
+describe('isNewLand', () => {
+  test('transforms the current position within the grid from ones into twos', () => {
+    const newGrid = [
+      [1, 0, 0],
+      [0, 0, 0],
+      [0, 0, 0],
+    ];
+    const resultGrid = [
+      [2, 0, 0],
+      [0, 0, 0],
+      [0, 0, 0],
+    ];
+    explore(0, 0, newGrid);
+    expect(newGrid).toEqual(resultGrid);
+  });
+  test('transforms adjacent positions within the grid from ones into twos', () => {
+    const newGrid = [
+      [0, 1, 0],
+      [1, 1, 1],
+      [0, 1, 0],
+    ];
+    const resultGrid = [
+      [0, 2, 0],
+      [2, 2, 2],
+      [0, 2, 0],
+    ];
+    explore(2, 1, newGrid);
+    expect(newGrid).toEqual(resultGrid);
+  });
+  test('does not go beyond zeros', () => {
+    const newGrid = [
+      [1, 0, 0],
+      [0, 1, 0],
+      [0, 0, 1],
+    ];
+    const resultGrid = [
+      [1, 0, 0],
+      [0, 2, 0],
+      [0, 0, 1],
+    ];
+    explore(1, 1, newGrid);
+    expect(newGrid).toEqual(resultGrid);
   });
 });
