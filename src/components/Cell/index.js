@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 import './styles.css';
 
 const Cell = observer(({
-  filled = false, x = -1, y = -1, clickAction = () => {},
+  filled = 0, x = -1, y = -1, clickAction = () => {},
 }) => {
   const cellType = filled ? 'land' : 'sea';
   return (
@@ -21,14 +21,14 @@ const Cell = observer(({
 });
 
 Cell.propTypes = {
-  filled: PropTypes.bool,
+  filled: PropTypes.number,
   x: PropTypes.number,
   y: PropTypes.number,
   clickAction: PropTypes.func,
 };
 
 Cell.defaultProps = {
-  filled: false,
+  filled: 0,
   x: -1,
   y: -1,
   clickAction: () => {},
