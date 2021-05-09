@@ -11,7 +11,7 @@ class App {
     flipCell = (x, y) => {
       if (!isSafe(x, y, this.grid)) return;
       const grid = [...this.grid];
-      grid[y][x] = !grid[y][x];
+      grid[y][x] = 1 - grid[y][x];
       this.grid = grid;
     }
 
