@@ -44,7 +44,7 @@ describe('generateGrid', () => {
     const width = randomNumber();
     const size = height * width;
     const testGrid = generateGrid(height, width);
-    test('returns a grid with 0 params', () => {
+    test('returns a grid', () => {
       expect(isGrid(testGrid)).toBeTruthy();
     });
     test(`has ${size} elements for a grid of size ${size}`, () => {
