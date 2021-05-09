@@ -8,6 +8,10 @@ import './styles.css';
 
 const App = observer(() => (
   <div className="app" data-testid="app">
+    <div className="counters">
+      <p>Total number of dots on the grid: </p>
+      <p>Total number of islands on the grid: </p>
+    </div>
     <SizeInputContainer name="height">
       <SizeInput name="height" value={app.height} changeAction={app.changeHeight} />
     </SizeInputContainer>
