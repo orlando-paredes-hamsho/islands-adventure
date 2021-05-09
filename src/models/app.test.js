@@ -61,6 +61,9 @@ describe('Changing Width', () => {
       {},
       [],
       -1,
+      null,
+      undefined,
+      NaN,
     ].forEach((invalidValue) => {
       test(`with value ${JSON.stringify(invalidValue)}`, () => {
         const app = new App(height, width);
@@ -91,6 +94,9 @@ describe('Changing Height', () => {
       {},
       [],
       -1,
+      null,
+      undefined,
+      NaN,
     ].forEach((invalidValue) => {
       test(`with value ${JSON.stringify(invalidValue)}`, () => {
         const app = new App(height, width);
