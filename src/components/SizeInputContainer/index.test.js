@@ -24,9 +24,9 @@ describe('with name', () => {
 
 describe('with children', () => {
   test('displays name as text', () => {
-    render(<SizeInputContainer name={'test'}><div>Children</div></SizeInputContainer>);
+    render(<SizeInputContainer name="test"><div>Children</div></SizeInputContainer>);
     const sizeInput = screen.getByTestId('sizeInputContainer');
-    const children = within(sizeInput).getByText(/children/i)
+    const children = within(sizeInput).getByText(/children/i);
     expect(children).toBeInTheDocument();
   });
 });
