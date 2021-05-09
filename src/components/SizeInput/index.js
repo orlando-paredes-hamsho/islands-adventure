@@ -1,23 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './styles.css';
+import { observer } from 'mobx-react-lite';
 
-const SizeInput = ({ name, value, changeAction }) => {
+const SizeInput = observer(({ name, value, changeAction }) => {
   if (!name) return null;
   return (
-    <label className="sizeInput" data-testid="sizeInput" htmlFor={name}>
-      {name}
-      <input
-        type="number"
-        id={name}
-        name={name}
-        value={value}
-        data-testid="sizeInputChanger"
-        onChange={(e) => { changeAction(e); }}
-      />
-    </label>
+    <input
+      type="number"
+      id={name}
+      name={name}
+      value={value}
+      data-testid="sizeInput"
+      onChange={({ target }) => { changeAction(parseInt(target.value, 10)); }}
+    />
   );
-};
+});
 
 SizeInput.propTypes = {
   name: PropTypes.string,

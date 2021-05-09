@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  render, screen, within, fireEvent,
+  render, screen, fireEvent,
 } from '@testing-library/react';
 import SizeInput from './index';
 
@@ -16,33 +16,19 @@ describe('with name', () => {
     const sizeInput = screen.getByTestId('sizeInput');
     expect(sizeInput).toBeInTheDocument();
   });
-  test('displays name as text', () => {
-    const name = 'test';
-    render(<SizeInput name={name} />);
-    const sizeInput = screen.getByTestId('sizeInput');
-    expect(sizeInput).toHaveTextContent(name);
-  });
-  test('contains input', () => {
-    render(<SizeInput name="test" />);
-    const sizeInput = screen.getByTestId('sizeInput');
-    const input = within(sizeInput).getByTestId('sizeInputChanger');
-    expect(input).toBeInTheDocument();
-  });
 });
 
 describe('with all props', () => {
   const value = 5;
   test('has value', () => {
     render(<SizeInput name="test" value={value} />);
-    const sizeInput = screen.getByTestId('sizeInput');
-    const input = within(sizeInput).getByTestId('sizeInputChanger');
+    const input = screen.getByTestId('sizeInput');
     expect(input).toHaveValue(value);
   });
   test('when changed calls changeAction', () => {
     const mockFn = jest.fn();
     render(<SizeInput name="test" value={value} changeAction={mockFn} />);
-    const sizeInput = screen.getByTestId('sizeInput');
-    const input = within(sizeInput).getByTestId('sizeInputChanger');
+    const input = screen.getByTestId('sizeInput');
     fireEvent.change(input, { target: { value: 7 } });
     expect(mockFn).toHaveBeenCalled();
   });
