@@ -1,7 +1,7 @@
 import {
-  makeObservable, observable, action, computed,
+  makeObservable, observable, action, computed, toJS,
 } from 'mobx';
-import { generateGrid, isSafe } from '../utils/grid';
+import { generateGrid, isSafe, countIslands } from '../utils/grid';
 
 class App {
     grid = [];
@@ -12,6 +12,11 @@ class App {
 
     get dots() {
       return [].concat(...this.grid).reduce((a, b) => a + b, 0);
+    }
+
+    get islands() {
+      const grid = toJS(this.grid);
+      return countIslands(grid);
     }
 
     flipCell = (x, y) => {
@@ -39,6 +44,7 @@ class App {
         height: observable,
         width: observable,
         dots: computed,
+        islands: computed,
         flipCell: action,
         changeHeight: action,
         changeWidth: action,
