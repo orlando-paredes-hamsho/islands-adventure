@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react-lite';
-import './Cell.css';
+import './styles.css';
 
 const Cell = observer(({
   filled = false, x = -1, y = -1, clickAction = () => {},

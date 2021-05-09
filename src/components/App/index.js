@@ -1,7 +1,7 @@
 import React from 'react';
 import { app } from '../../models/app';
 import Grid from '../Grid';
-import './App.css';
+import './styles.css';
 
 const App = () => (
   <div className="app" data-testid="app">

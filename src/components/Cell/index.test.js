@@ -34,8 +34,8 @@ test('when clicked calls clickAction with -1 and -1', () => {
     new MouseEvent('click', {
       bubbles: true,
       cancelable: true,
-    })
-  )
+    }),
+  );
   expect(myMock).toHaveBeenCalledWith(-1, -1);
 });
 
@@ -49,7 +49,7 @@ test('when clicked calls clickAction with x and y if available', () => {
     new MouseEvent('click', {
       bubbles: true,
       cancelable: true,
-    })
-  )
+    }),
+  );
   expect(myMock).toHaveBeenCalledWith(x, y);
 });
