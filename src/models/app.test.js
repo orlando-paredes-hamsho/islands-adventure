@@ -1,5 +1,6 @@
 import App from './app';
 import { generateGrid } from '../utils/grid';
+import randomNumber from '../utils';
 
 const height = 10;
 const width = 5;
@@ -49,5 +50,65 @@ describe('Flipping a Cell', () => {
     test('Grid cell should change', () => {
       expect(app.grid[y][x]).not.toEqual(cell);
     });
+  });
+});
+
+describe('Changing Width', () => {
+  describe('value does not change', () => {
+    [
+      true,
+      'test',
+      {},
+      [],
+      -1,
+    ].forEach((invalidValue) => {
+      test(`with value ${JSON.stringify(invalidValue)}`, () => {
+        const app = new App(height, width);
+        app.changeWidth(invalidValue);
+        expect(app.width).toEqual(width);
+      });
+    });
+  });
+  test('value changes with proper number', () => {
+    const app = new App(height, width);
+    const newValue = randomNumber();
+    app.changeWidth(newValue);
+    expect(app.width).toEqual(newValue);
+  });
+  test('grid changes when width changes', () => {
+    const app = new App(height, width);
+    const newValue = randomNumber();
+    app.changeWidth(newValue);
+    expect(app.grid).toEqual(generateGrid(height, newValue));
+  });
+});
+
+describe('Changing Height', () => {
+  describe('value does not change', () => {
+    [
+      true,
+      'test',
+      {},
+      [],
+      -1,
+    ].forEach((invalidValue) => {
+      test(`with value ${JSON.stringify(invalidValue)}`, () => {
+        const app = new App(height, width);
+        app.changeHeight(invalidValue);
+        expect(app.height).toEqual(height);
+      });
+    });
+  });
+  test('value changes with proper number', () => {
+    const app = new App(height, width);
+    const newValue = randomNumber();
+    app.changeHeight(newValue);
+    expect(app.height).toEqual(newValue);
+  });
+  test('grid changes when height changes', () => {
+    const app = new App(height, width);
+    const newValue = randomNumber();
+    app.changeHeight(newValue);
+    expect(app.grid).toEqual(generateGrid(newValue, width));
   });
 });
