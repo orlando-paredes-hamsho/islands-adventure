@@ -19,7 +19,7 @@ const Grid = observer(({ grid, clickAction }) => {
 });
 
 Grid.propTypes = {
-  grid: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.bool)),
+  grid: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
   clickAction: PropTypes.func,
 };
 

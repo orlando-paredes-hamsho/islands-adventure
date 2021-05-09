@@ -12,7 +12,7 @@ describe('isGrid', () => {
       [1],
       ['test'],
       [{}],
-      [[1]],
+      [[true]],
       [['test']],
       [[{}]],
     ].forEach((notAGrid) => {
@@ -22,8 +22,8 @@ describe('isGrid', () => {
     });
   });
   describe('returns true', () => {
-    const falsyGrid = [[false]];
-    const truthyGrid = [[true]];
+    const falsyGrid = [[0]];
+    const truthyGrid = [[1]];
     test(`with value ${JSON.stringify(falsyGrid)}`, () => {
       expect(isGrid(falsyGrid)).toBeTruthy();
     });
