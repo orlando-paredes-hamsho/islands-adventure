@@ -1,5 +1,5 @@
 import {
-  isGrid, generateGrid, isSafe, isNewLand, explore,
+  isGrid, generateGrid, isSafe, isNewLand, explore, countIslands,
 } from './index';
 import randomNumber from '../index';
 
@@ -148,5 +148,68 @@ describe('isNewLand', () => {
     ];
     explore(1, 1, newGrid);
     expect(newGrid).toEqual(resultGrid);
+  });
+});
+
+describe('countIslands', () => {
+  test('counts ones as lands and ignores 0s', () => {
+    const newGrid = [
+      [1, 0, 0],
+      [0, 0, 0],
+      [0, 0, 0],
+    ];
+    expect(countIslands(newGrid)).toEqual(1);
+  });
+  test('counts adjacent ones within the grid as islands', () => {
+    const newGrid = [
+      [0, 1, 0],
+      [1, 1, 1],
+      [0, 1, 0],
+    ];
+    expect(countIslands(newGrid)).toEqual(1);
+  });
+  test('separates islands by zeros on a vertical and horizontal plane', () => {
+    const newGrid = [
+      [1, 0, 1],
+      [0, 0, 0],
+      [1, 0, 1],
+    ];
+    expect(countIslands(newGrid)).toEqual(4);
+  });
+  test('ignores diagonal closeness', () => {
+    const newGrid = [
+      [1, 0, 1],
+      [0, 1, 0],
+      [1, 0, 1],
+    ];
+    expect(countIslands(newGrid)).toEqual(5);
+  });
+  test('works on taller grids', () => {
+    const newGrid = [
+      [1, 0, 1],
+      [0, 1, 0],
+      [1, 0, 1],
+      [1, 0, 1],
+      [1, 0, 1],
+    ];
+    expect(countIslands(newGrid)).toEqual(5);
+  });
+  test('works on wider grids', () => {
+    const newGrid = [
+      [1, 0, 1, 0, 1],
+      [0, 1, 0, 0, 1],
+      [1, 0, 1, 0, 1],
+    ];
+    expect(countIslands(newGrid)).toEqual(6);
+  });
+  test('works on complex grids', () => {
+    const newGrid = [
+      [1, 0, 1, 0, 1],
+      [0, 1, 0, 0, 1],
+      [1, 0, 1, 1, 1],
+      [0, 1, 0, 0, 1],
+      [1, 0, 1, 1, 1],
+    ];
+    expect(countIslands(newGrid)).toEqual(7);
   });
 });
