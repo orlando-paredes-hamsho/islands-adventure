@@ -16,6 +16,9 @@ describe('App default values', () => {
   test('has an empty grid', () => {
     expect(app.grid).toEqual([]);
   });
+  test('has 0 dots', () => {
+    expect(app.dots).toEqual(0);
+  });
 });
 
 describe('App with param values', () => {
@@ -29,26 +32,46 @@ describe('App with param values', () => {
   test('has a proper grid', () => {
     expect(app.grid).toEqual(generateGrid(height, width));
   });
+  test('has 0 dots', () => {
+    expect(app.dots).toEqual(0);
+  });
 });
 
 describe('Flipping a Cell', () => {
-  const app = new App(height, width);
-  const grid = [...app.grid];
   test('Grid should not change if the x, y values are out of bounds', () => {
+    const app = new App(height, width);
+    const grid = [...app.grid];
     app.flipCell(height, width);
     expect(app.grid).toEqual(grid);
   });
-  test('Grid should not change if the x, y values are invalid', () => {
-    app.flipCell(-1, -1);
+  test('Dots should not change if the x, y values are out of bounds', () => {
+    const app = new App(height, width);
+    const grid = [...app.grid];
+    app.flipCell(height, width);
     expect(app.grid).toEqual(grid);
   });
+  test('Dots should not change if the x, y values are invalid', () => {
+    const app = new App(height, width);
+    app.flipCell(-1, -1);
+    expect(app.dots).toEqual(0);
+  });
+  test('Dots should not change if the x, y values are out of bounds', () => {
+    const app = new App(height, width);
+    app.flipCell(height, width);
+    expect(app.dots).toEqual(0);
+  });
   describe('When the x, y values are valid', () => {
+    const app = new App(height, width);
+    const grid = [...app.grid];
     const x = 2;
     const y = 3;
     const cell = grid[y][x];
     app.flipCell(x, y);
     test('Grid cell should change', () => {
       expect(app.grid[y][x]).not.toEqual(cell);
+    });
+    test('Dots should change', () => {
+      expect(app.dots).not.toEqual(0);
     });
   });
 });

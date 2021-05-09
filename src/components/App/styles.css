@@ -7,6 +7,12 @@
   margin: 20px auto;
   text-align: left;
 }
+
 .counters > p {
   margin: 5px 0;
+}
+
+.counters b {
+  display: inline-block;
+  margin: 0 5px;
 }

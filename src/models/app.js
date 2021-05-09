@@ -1,4 +1,6 @@
-import { makeObservable, observable, action } from 'mobx';
+import {
+  makeObservable, observable, action, computed,
+} from 'mobx';
 import { generateGrid, isSafe } from '../utils/grid';
 
 class App {
@@ -7,6 +9,10 @@ class App {
     height = 0;
 
     width = 0;
+
+    get dots() {
+      return [].concat(...this.grid).reduce((a, b) => a + b, 0);
+    }
 
     flipCell = (x, y) => {
       if (!isSafe(x, y, this.grid)) return;
@@ -32,6 +38,7 @@ class App {
         grid: observable,
         height: observable,
         width: observable,
+        dots: computed,
         flipCell: action,
         changeHeight: action,
         changeWidth: action,
