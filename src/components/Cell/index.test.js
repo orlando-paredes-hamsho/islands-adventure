@@ -40,10 +40,10 @@ test('when clicked calls clickAction with -1 and -1', () => {
 });
 
 test('when clicked calls clickAction with x and y if available', () => {
-  const myMock = jest.fn();
+  const mockFn = jest.fn();
   const x = 1;
   const y = 1;
-  render(<Cell filled={1} clickAction={myMock} x={x} y={y} />);
+  render(<Cell filled={1} clickAction={mockFn} x={x} y={y} />);
   fireEvent(
     screen.getByTestId('cell'),
     new MouseEvent('click', {
@@ -51,5 +51,5 @@ test('when clicked calls clickAction with x and y if available', () => {
       cancelable: true,
     }),
   );
-  expect(myMock).toHaveBeenCalledWith(x, y);
+  expect(mockFn).toHaveBeenCalledWith(x, y);
 });
