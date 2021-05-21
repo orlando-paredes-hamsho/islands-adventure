@@ -19,6 +19,9 @@ describe('App default values', () => {
   test('has 0 dots', () => {
     expect(app.dots).toEqual(0);
   });
+  test('is loading', () => {
+    expect(app.loading).toEqual(true);
+  });
 });
 
 describe('App with param values', () => {
@@ -155,5 +158,79 @@ describe('Changing Height', () => {
     const newValue = randomNumber();
     app.changeHeight(newValue);
     expect(app.grid).toEqual(generateGrid(newValue, width));
+  });
+});
+
+describe('Changing Loading State', () => {
+  describe('value does not change', () => {
+    [
+      1,
+      'test',
+      {},
+      [],
+      -1,
+      null,
+      undefined,
+      NaN,
+    ].forEach((invalidValue) => {
+      test(`with value ${JSON.stringify(invalidValue)}`, () => {
+        const app = new App(height, width);
+        app.setLoading(invalidValue);
+        expect(app.loading).toEqual(true);
+      });
+    });
+  });
+  test('value changes with proper number', () => {
+    const app = new App(height, width);
+    const newValue = false;
+    app.setLoading(newValue);
+    expect(app.loading).toEqual(newValue);
+  });
+});
+
+describe('setGrid', () => {
+  describe('does not change', () => {
+    [
+      true,
+      1,
+      'test',
+      {},
+      undefined,
+      null,
+      NaN,
+      [true],
+      [1],
+      ['test'],
+      [{}],
+      [undefined],
+      [null],
+      [NaN],
+      [[true]],
+      [['test']],
+      [[{}]],
+      [[undefined]],
+      [[null]],
+      [[NaN]],
+    ].forEach((notAGrid) => {
+      test(`with value ${JSON.stringify(notAGrid)}`, () => {
+        const app = new App(height, width);
+        app.setGrid(notAGrid);
+        expect(app.grid).toEqual(generateGrid(height, width));
+      });
+    });
+  });
+  describe('changes', () => {
+    const falsyGrid = [[0]];
+    const truthyGrid = [[1]];
+    test(`with value ${JSON.stringify(falsyGrid)}`, () => {
+      const app = new App(height, width);
+      app.setGrid(falsyGrid);
+      expect(app.grid).toEqual(falsyGrid);
+    });
+    test(`with value ${JSON.stringify(truthyGrid)}`, () => {
+      const app = new App(height, width);
+      app.setGrid(truthyGrid);
+      expect(app.grid).toEqual(truthyGrid);
+    });
   });
 });

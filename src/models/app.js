@@ -1,7 +1,9 @@
 import {
   makeObservable, observable, action, computed, toJS,
 } from 'mobx';
-import { generateGrid, isSafe, countIslands } from '../utils/grid';
+import {
+  generateGrid, isSafe, countIslands, isGrid,
+} from '../utils/grid';
 
 class App {
     grid = [];
@@ -9,6 +11,8 @@ class App {
     height = 0;
 
     width = 0;
+
+    loading = true;
 
     get dots() {
       return [].concat(...this.grid).reduce((a, b) => a + b, 0);
@@ -38,11 +42,22 @@ class App {
       this.grid = generateGrid(height, this.width);
     }
 
+    setGrid = (grid) => {
+      if (!isGrid(grid)) return;
+      this.grid = grid;
+    }
+
+    setLoading = (loading) => {
+      if (typeof loading !== 'boolean') return;
+      this.loading = loading;
+    }
+
     constructor(height, width) {
       makeObservable(this, {
         grid: observable,
         height: observable,
         width: observable,
+        loading: observable,
         dots: computed,
         islands: computed,
         flipCell: action,
@@ -51,7 +66,7 @@ class App {
       });
       this.height = (typeof height === 'number') ? height : this.height;
       this.width = (typeof width === 'number') ? width : this.width;
-      this.grid = generateGrid(height, width);
+      this.setGrid(generateGrid(height, width));
     }
 }
 
