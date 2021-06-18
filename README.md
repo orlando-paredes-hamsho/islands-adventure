@@ -1,4 +1,4 @@
-# Islands Adventure Test
+# Islands Adventure
 
 - [Local Development](#local-development)
   * [Requirements](#requirements)
